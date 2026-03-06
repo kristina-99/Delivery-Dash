@@ -1,16 +1,33 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Driver : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]float steerSpeed = 2;
+    [SerializeField]float moveSpeed = .1f;
 
-    // Update is called once per frame
+
     void Update()
     {
-        transform.Rotate(0, 0, 0.02f);
+        if (Keyboard.current.wKey.isPressed)
+        {
+            Debug.Log("We are pushing forward");
+        }
+        else if (Keyboard.current.sKey.isPressed)
+        {
+            Debug.Log("We are going backwards");
+        }
+
+        if (Keyboard.current.aKey.isPressed)
+        {
+            Debug.Log("We are going left");
+        }
+        else if (Keyboard.current.dKey.isPressed)
+        {
+            Debug.Log("We are going right");
+        }
+
+        transform.Rotate(0, 0, steerSpeed);
+        transform.Translate(0, moveSpeed, 0);
     }
 }
