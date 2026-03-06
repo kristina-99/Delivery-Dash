@@ -3,31 +3,34 @@ using UnityEngine.InputSystem;
 
 public class Driver : MonoBehaviour
 {
+    [SerializeField] float moveSpeed = .1f;
     [SerializeField]float steerSpeed = 2;
-    [SerializeField]float moveSpeed = .1f;
 
 
     void Update()
     {
+        float move = 0f;
+        float steer = 0f;
+
         if (Keyboard.current.wKey.isPressed)
         {
-            Debug.Log("We are pushing forward");
+            move = 1f;
         }
         else if (Keyboard.current.sKey.isPressed)
         {
-            Debug.Log("We are going backwards");
+            move = -1f;
         }
 
         if (Keyboard.current.aKey.isPressed)
         {
-            Debug.Log("We are going left");
+            steer = 1f;
         }
         else if (Keyboard.current.dKey.isPressed)
         {
-            Debug.Log("We are going right");
+            steer = -1f;
         }
 
-        transform.Rotate(0, 0, steerSpeed);
-        transform.Translate(0, moveSpeed, 0);
+        transform.Translate(0, move * moveSpeed, 0);
+        transform.Rotate(0, 0, steer * steerSpeed);
     }
 }
