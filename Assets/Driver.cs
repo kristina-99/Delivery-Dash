@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Driver : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = .1f;
+    [SerializeField]float moveSpeed = .1f;
     [SerializeField]float steerSpeed = 2;
 
 
@@ -30,7 +30,10 @@ public class Driver : MonoBehaviour
             steer = -1f;
         }
 
-        transform.Translate(0, move * moveSpeed, 0);
-        transform.Rotate(0, 0, steer * steerSpeed);
+        float moveAmount = move * moveSpeed * Time.deltaTime;
+        float steerAmount = steer * steerSpeed * Time.deltaTime;
+
+        transform.Translate(0, moveAmount, 0);
+        transform.Rotate(0, 0, steerAmount);
     }
 }
