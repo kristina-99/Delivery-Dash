@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class Delivery : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    bool hasPackage;
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Package"))
         {
             Debug.Log("Picked up package");
+            hasPackage = true;
         }
-        else if (collision.CompareTag("Customer"))
+
+        if (collision.CompareTag("Customer") && hasPackage)
         {
             Debug.Log("Package delivered");
+            hasPackage = false;
         }
+
     }
 }
